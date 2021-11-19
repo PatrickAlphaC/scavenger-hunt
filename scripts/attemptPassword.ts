@@ -23,3 +23,10 @@ export async function attemptPassword () {
     console.log("If the answer is 0, you likely have to just wait longer!")
     return requestTx
 }
+
+attemptPassword()
+    .then(() => process.exit(0))
+    .catch((error) => {
+        console.error(error)
+        process.exit(1)
+    })
