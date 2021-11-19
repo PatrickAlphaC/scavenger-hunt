@@ -40,8 +40,8 @@ NFT 4: Read the contract to learn how to win this NFT.
 ## Installation
 
 ```sh
-git clone https://github.com/PatrickAlphaC/decentralized-raffle.git
-cd decentralized-raffle
+git clone https://github.com/PatrickAlphaC/scavenger-hunt
+cd scavenger-hunt
 yarn
 ```
 ### Deploy contracts
