@@ -27,9 +27,11 @@ NFT 1: Can be won by calling `attemptPassword` with the correct password. It has
 
 NFT 2: Can be won by calling `attemptPassword` with the correct password. The hint is on chain, and also here: "5468697320776173206465706c6f7965642073706f6f6b696c792e203078666264394437343334333735373836413839324241666431386532466330333445323346334432372e20"
 
-NFT 3: Read the contract to learn how to win this NFT. 
-
 NFT 4: Read the contract to learn how to win this NFT. 
+
+WHoops, challenge 3 only works with `0x78fd950DA0f16d02E537F6cCA4c4717061D51e40` instead, sorry!
+
+NFT 3: Read the contract to learn how to win this NFT. 
 
 # Quickstart
  ## Requirements
