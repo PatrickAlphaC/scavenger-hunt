@@ -60,7 +60,7 @@ npx hardhat node
 
 To deploy to a testnet or a live network, you need the following environment variables:
 
-1. KOVAN_RPC_URL=https://eth-rinkeby.alchemyapi.io/v2/<YOUR ALCHEMY KEY>
+1. RINKEBY_RPC_URL=https://eth-rinkeby.alchemyapi.io/v2/<YOUR ALCHEMY KEY>
 2. PRIVATE_KEY=0xabc123abc123abc123abc123abc123abc123abc123abc123abc123abc123abc1
 
 Your `RINKEBY_RPC_URL` is the URL of your blockchain node, for example, from [alchemy](https://www.alchemy.com/).
