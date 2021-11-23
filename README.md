@@ -12,6 +12,8 @@
 </p>
 <br/>
 
+[Winner NFTs here](https://opensea.io/collection/chainlink-hackathon-scavengerhunt)
+
 # About
 
 `0xAc7E321ba4D4821Fa2259A166eF17044a7F2d521`

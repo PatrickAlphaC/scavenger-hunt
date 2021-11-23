@@ -34,7 +34,6 @@ const deployScavengerHunt: DeployFunction = async function (
     from: deployer,
     args: constructorArgs,
     log: true,
-    deterministicDeployment: true,
   })
   log(`ScavengerHunt deployed at ${scavengerHunt.address}`)
   if (!developmentChains.includes(hre.network.name)) {

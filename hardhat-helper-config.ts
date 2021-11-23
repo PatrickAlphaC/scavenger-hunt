@@ -33,6 +33,13 @@ export const networkConfig: networkConfigInfo = {
     jobId: "531092b9b5304e2b849f3c28671065bc",
     fundAmount: "1000000000000000000",
   },
+  polygon: {
+    id: 137,
+    linkToken: "0xb0897686c545045afc77cf20ec7a532e3120e0f1",
+    oracle: "0xc57B33452b4F7BB189bB5AfaE9cc4aBa1f7a4FD8",
+    jobId: "531092b9b5304e2b849f3c28671065bc",
+    fundAmount: "1000000000000000000",
+  },
 }
 
 export const developmentChains = ["hardhat", "localhost"]
