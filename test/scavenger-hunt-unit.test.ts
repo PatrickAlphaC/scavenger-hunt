@@ -17,9 +17,10 @@ describe('ScavengerHunt', async () => {
   let mockOracle: MockOracle
   let accounts: SignerWithAddress[]
   let player: SignerWithAddress, admin: SignerWithAddress, playerTwo: SignerWithAddress
+
   beforeEach(async () => {
-    if (developmentChains.includes(network.name)) {
-      runTest = true
+    if (!developmentChains.includes(network.name)) {
+      throw "not on a test network"
     }
     await deployments.fixture(["all"])
     accounts = await ethers.getSigners()
@@ -33,12 +34,35 @@ describe('ScavengerHunt', async () => {
     mockOracle = await ethers.getContractAt("MockOracle", MockOracle.address, admin)
   })
 
-  it("Should allow people to attempt password", async () => {
-    if (runTest) {
-      const oracleResponseInt = 1
-      const oracleResponse = ethers.utils.hexZeroPad(ethers.utils.hexlify(oracleResponseInt), 32)
+  describe("constructor", () => {
+
+  })
+
+  describe("attemptPassword", () => {
+    // const oracleResponseInt = 1
+    // const oracleResponse = ethers.utils.hexZeroPad(ethers.utils.hexlify(oracleResponseInt), 32)
+
+    beforeEach(() => {
       expect(await scavengerHunt.tokenIdTaken(oracleResponse)).to.equal(false)
       await run("fund-link", { contract: scavengerHunt.address, linkaddress: LinkToken.address, fundamount: "2000000000000000000" }) // 1 LINK
+    })
+
+    context("when the oracle responds with -1", () => {
+      const oracleResponseInt = -1
+      const oracleResponse = ethers.utils.hexZeroPad(ethers.utils.hexlify(oracleResponseInt), 32)
+
+      it.only("marks the password as not taken", async () => {
+        let transactionResponse = await scavengerHunt.attemptPassword("bad")
+        let transactionReceipt = await transactionResponse.wait()
+        let requestId = transactionReceipt.events![4].topics[1]
+        let tx = await mockOracle.fulfillOracleRequest(requestId, oracleResponse)
+        await tx.wait()
+        expect(await scavengerHunt.tokenIdTaken(oracleResponseInt)).to.equal(false)
+        expect(await scavengerHunt.ownerOf(oracleResponseInt)).to.equal(admin)
+      })
+    })
+
+    it("allows people to attempt password", async () => {
       let transactionResponse = await scavengerHunt.attemptPassword("FreeBe")
       let transactionReceipt = await transactionResponse.wait()
       let requestId = transactionReceipt.events![4].topics[1]
@@ -54,8 +78,6 @@ describe('ScavengerHunt', async () => {
       requestId = transactionReceipt.events![4].topics[1]
       tx = await mockOracle.fulfillOracleRequest(requestId, oracleResponse)
       expect(await scavengerHunt.ownerOf(oracleResponseInt)).to.equal(player.address)
-
-    }
+    })
   })
 })
-
